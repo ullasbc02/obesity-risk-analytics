@@ -59,51 +59,68 @@ The analysis integrates 7 socioeconomic and health behavior indicators:
 - **Physical Inactivity Rate** (%)
 - **Low Access to Healthy Food** (%)
 - **Health Professional Shortage Areas** (categorical)
+- **County FIPS Geometries** (GeoJSON)
+- **Population Estimates based on US Census Data** (for weighting and normalization)
 
-**Data Sources:** CDC BRFSS, US Census Bureau, USDA Food Access Research Atlas
+**Data Sources:** 
+(https://www.ruralhealthinfo.org/)
+(https://www.census.gov/data/tables/time-series/demo/popest/2020s-counties-detail.html)
 
 ---
 
 ## Getting Started
 
-### Prerequisites
+### Important: Google Colab Only
 
-- **Python 3.8+** or **Google Colab** (recommended)
-- Install dependencies:
+**All notebooks in this project are specifically designed to run ONLY on Google Colab.** They are not intended for local execution due to:
+- Pre-configured Google Drive integration
+- Optimized file paths for Colab environment
+- Built-in GPU acceleration support
+- Automatic dependency management in Colab
 
-```bash
-pip install -r requirements.txt
-```
+### Setup Instructions (Google Colab)
 
-### Installation
+#### Step 1: Prepare Your Google Drive
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/ullasbc02/obesity-risk-analytics.git
-   cd obesity-risk-analytics
+1. **Upload the data folders from the data directory to your Google Drive:**
+   - Create or locate the following folders in your Google Drive:
+     - `/MyDrive/obesity-analytics-notebooks/` (contains multi-year temporal datasets)
+     - `/MyDrive/obesity-risk-analytics/` (contains processed analysis data)
+   - Ensure all raw datasets are placed in the appropriate folders
+
+2. **Verify the folder structure:**
+   ```
+   Google Drive/
+   └── MyDrive/
+       ├── obesity-analytics-notebooks/
+       │   └── Multi-Year-Trend/Dataset/
+       └── obesity-risk-analytics/
+           ├── data/
+           │   ├── raw/
+           │   └── processed_final/
+           └── dashboard_data_final/
    ```
 
-2. **Set up your environment:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+#### Step 2: Open Notebooks in Google Colab
 
-3. **For Google Colab users:**
-   - Upload project folders to Google Drive
-   - Notebooks include `drive.mount()` commands for seamless integration
-   - All paths are configured for `/content/drive/MyDrive/` structure
+1. **Access the notebooks:**
+   - Click the **"Open In Colab"** badge at the top of any notebook
+   - Or navigate to [Google Colab](https://colab.research.google.com/) and upload the `.ipynb` files
 
-### Running the Notebooks
+2. **Mount Google Drive:**
+   - Each notebook includes a `drive.mount('/content/drive')` cell
+   - Run this cell first and authorize access to your Google Drive
 
-#### Option 1: Local Jupyter
-```bash
-jupyter notebook notebooks/01_data_cleaning.ipynb
-```
+3. **Run the analysis:**
+   - Execute cells sequentially from top to bottom
+   - Dependencies are automatically installed via `!pip install` commands in notebooks
+   - All file paths are pre-configured for the Colab environment
 
-#### Option 2: Google Colab (Recommended)
-- Click the "Open In Colab" badge at the top of each notebook
-- Notebooks automatically mount Google Drive on first cell execution
-- Run cells sequentially for end-to-end analysis
+#### Step 3: Follow the Workflow
+
+- Start with **Phase 1** (`notebooks/` folder) for core analysis
+- Then proceed to **Phase 2** (`notebooks-forecast/` folder) for temporal forecasting
+- Each notebook is self-contained with markdown explanations
 
 ---
 
@@ -119,15 +136,19 @@ jupyter notebook notebooks/01_data_cleaning.ipynb
 
 ---
 
-## Requirements
+## Dependencies
 
-All dependencies are specified in `requirements.txt`:
+**All dependencies are automatically installed within Google Colab notebooks** via `!pip install` commands in the first cells.
+
+The `requirements.txt` file is provided for reference only and includes:
 
 **Core:** pandas, numpy, scipy  
 **ML:** scikit-learn, hdbscan, umap-learn, pygam  
 **Statistics:** statsmodels, dcor, shap  
 **Geospatial:** geopandas, shapely, libpysal, esda  
 **Visualization:** matplotlib, seaborn, plotly  
+
+> **Note:** You do NOT need to manually install these packages. Colab handles all installations automatically when you run the notebooks.  
 
 ---
 
@@ -153,19 +174,23 @@ All dependencies are specified in `requirements.txt`:
 
 ## Important Notes
 
- **Google Colab Optimization**
-- All notebooks are designed and tested for Google Colab environment
-- Local execution may require path adjustments
-- GPU acceleration available in Colab for faster model training
+ **Google Colab REQUIRED**
+- **DO NOT attempt to run these notebooks locally** - they are configured exclusively for Google Colab
+- All file paths use `/content/drive/MyDrive/` structure specific to Colab
+- Notebooks automatically install required dependencies via `!pip install` commands
+- GPU/TPU acceleration is automatically available in Colab for faster training
 
- **Data Structure**
-- Raw datasets are loaded from Google Drive paths
-- Processed data is cached to improve notebook execution speed
-- GeoJSON files required for spatial visualizations
+ **Google Drive Structure is Critical**
+- The exact folder names "obesity-analytics-notebooks" and "obesity-risk-analytics" MUST exist in your Google Drive
+- Data paths are hardcoded in notebooks - changing folder names will break the notebooks
+- GeoJSON files must be in the `dashboard_data_final/` folder
+- All raw data files must match the expected filenames in the notebooks
 
- **File Management**
-- Ensure "obesity-analytics-notebooks" and "obesity-risk-analytics" folders exist in Google Drive
-- Update data paths in notebooks if your drive structure differs
+ **Data Management**
+- Processed datasets are saved back to Google Drive automatically
+- Trained models (.pkl files) are stored in `processed_final/` folders
+- Intermediate outputs are cached to speed up re-runs
+- Each notebook saves its outputs for use by subsequent notebooks
 
 ---
 
@@ -187,7 +212,8 @@ This project is open source
 
 ## Contact & Contributors
 
-**Project Author:** Ullas BC  and Vishrutha Ravi
+**Project Author:** Ullas Basavapatna Chandrashekar  and Vishrutha Ravi
+
 **Repository:** [github.com/ullasbc02/obesity-risk-analytics](https://github.com/ullasbc02/obesity-risk-analytics)
 
 
@@ -195,9 +221,5 @@ This project is open source
 ---
 
 ## Acknowledgments
-
-- CDC BRFSS data for obesity prevalence metrics
-- US Census Bureau for socioeconomic indicators
-- USDA Food Access Research Atlas for food access data
-- County FIPS geometries for spatial analysis
+- Data sourced from Rural Health Information Hub and US Census Bureau
 
