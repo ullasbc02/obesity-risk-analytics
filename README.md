@@ -18,6 +18,8 @@ This repository contains code and resources for analyzing obesity risk factors u
 
 ## Project Structure
 
+>  **HTML Versions Available:** All notebooks are also provided as HTML files for easy viewing without running code. You can open these files directly in your browser to review the analysis, visualizations, and results.
+
 ###  Phase 1: Core Analysis (`notebooks/`)
 
 **7 comprehensive notebooks** for baseline obesity risk analysis:
@@ -103,6 +105,8 @@ The analysis integrates 7 socioeconomic and health behavior indicators:
 
 #### Step 2: Open Notebooks in Google Colab
 
+**Option A: Run the Notebooks (Google Colab)**
+
 1. **Access the notebooks:**
    - Click the **"Open In Colab"** badge at the top of any notebook
    - Or navigate to [Google Colab](https://colab.research.google.com/) and upload the `.ipynb` files
@@ -115,6 +119,13 @@ The analysis integrates 7 socioeconomic and health behavior indicators:
    - Execute cells sequentially from top to bottom
    - Dependencies are automatically installed via `!pip install` commands in notebooks
    - All file paths are pre-configured for the Colab environment
+
+**Option B: View HTML Files (No Setup Required)**
+
+- Each notebook has a corresponding `.html` file in the same folder
+- Simply open the HTML file in your web browser to view the complete analysis
+- HTML files include all code, outputs, visualizations, and markdown explanations
+- Perfect for reviewing results without running any code or setting up Colab
 
 #### Step 3: Follow the Workflow
 
@@ -201,6 +212,15 @@ Notebooks generate:
 - **Visualizations** - Static plots (PNG) and interactive dashboards (HTML)
 - **Models** - Trained ML models saved as pickle files (`.pkl`)
 - **Data summaries** - Statistical tables and feature importance rankings
+
+###  HTML Export Files
+
+All notebooks are also available as **static HTML files** for easy viewing:
+- Located in the same directories as the `.ipynb` files
+- Can be opened directly in any web browser
+- Contain all code cells, outputs, plots, and markdown documentation
+- Ideal for sharing results with stakeholders or reviewing analyses without running code
+- Preserve all interactive Plotly visualizations as static snapshots
 
 ---
 
